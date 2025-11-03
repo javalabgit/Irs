@@ -1,0 +1,213 @@
+
+
+## Q1: Distance-Vector vs Link-State Routing
+
+**Distance-vector** routers use neighbor info and exchange vectors periodically. **Link-state** routers build a complete map of the network with link info, running algorithms like Dijkstra’s for best paths.
+
+**Comparison Table:**
+
+| Feature                | Distance-Vector            | Link-State                |
+|------------------------|---------------------------|---------------------------|
+| Info Shared            | Vectors w/ neighbors      | Complete link-state map   |
+| Network View           | Local                     | Global                    |
+| Algorithm              | Bellman-Ford              | Dijkstra’s                |
+| Convergence Speed      | Slow                      | Fast                      |
+| Resource Usage         | Low                       | High                      |
+| Loops                  | Persistent possible       | Mainly transient          |
+
+**Illustrative Diagram:**  
+[1][2]
+
+***
+
+## Q2: TCP Congestion Control Operation
+
+TCP employs **Slow Start, Congestion Avoidance, and Congestion Detection** (additive increase/multiplicative decrease) to dynamically adjust traffic rate.
+
+**Phases Table:**
+
+| Phase                | Behavior                                     |
+|----------------------|----------------------------------------------|
+| Slow Start           | Rapid exponential growth of cwnd             |
+| Avoidance            | Linear increase after threshold              |
+| Detection            | Drops on loss, resets cwnd or reduces window |
+
+**Diagram:**  
+[3][4]
+
+***
+
+## Q3: Classful Addressing in IPv4
+
+IPv4 originally used **classful addressing** (A-E), where address blocks are split by prefix bits.
+
+**Structure Table:**
+
+| Class | Leading Bits | Net Bits | Host Bits | Example Address | Usable Host Count |
+|-------|--------------|----------|-----------|----------------|-------------------|
+| A     | 0            | 8        | 24        | 10.x.x.x        | ~16 million       |
+| B     | 10           | 16       | 16        | 172.16.x.x      | ~65,000           |
+| C     | 110          | 24       | 8         | 192.168.1.x     | 256               |
+| D     | 1110         | -        | -         | multicast       | -                 |
+| E     | 1111         | -        | -         | reserved        | -                 |
+
+**Diagram:**  
+[5]
+
+***
+
+## Q4: IPv4 Header Structure
+
+The **IPv4 header** is a 20-byte structured block with fields for addressing, control, and routing.
+
+**Header Fields Table:**
+
+| Field            | Bits | Purpose                                |
+|------------------|------|----------------------------------------|
+| Version          | 4    | IPv4 identifier                        |
+| IHL              | 4    | Header length                          |
+| Type of Service  | 8    | Handling priorities                    |
+| Total Length     | 16   | Datagram length                        |
+| Identification   | 16   | Datagram reassembly                    |
+| Flags            | 3    | Fragmentation controls                 |
+| Fragment Offset  | 13   | Datagram fragment location             |
+| TTL              | 8    | Lifetime                               |
+| Protocol         | 8    | Next-level protocol indicator          |
+| Header checksum  | 16   | Header error checking                  |
+| Source address   | 32   | Sender address                         |
+| Destination addr | 32   | Recipient address                      |
+| Options          | var  | Special functionalities                |
+
+**Diagram:**  
+[6][7]
+
+***
+
+## Q5: Transport Layer Reliability
+
+The transport layer, especially TCP, uses connection management, sequencing, flow/error control, and retransmission for reliability.
+
+**Mechanism Table:**
+
+| Mechanism         | Role                                         |
+|-------------------|-----------------------------------------------|
+| Connection        | Ensures session management                   |
+| Numbering/ORDER   | Ensures proper sequence and integrity        |
+| Flow Control      | Avoids receiver overload                     |
+| Error Control     | Uses checksum, ACK, and retransmission       |
+
+**Diagram:**  
+[8][9]
+
+***
+
+## Q6: TCP Three-Way Handshake
+
+A **three-stage exchange** (SYN, SYN-ACK, ACK) between client and server establishes session and synchronizes sequence numbers.
+
+**Steps Diagram:**  
+[10][11]
+
+***
+
+## Q7: UDP Segment Structure
+
+UDP is a **lightweight protocol** with a minimal 8-byte header.
+
+**Header Table:**
+
+| Field          | Bits | Example Value      |
+|----------------|------|-------------------|
+| Source Port    | 16   | 12345             |
+| Destination Port | 16 | 80                |
+| Length         | 16   | 32                |
+| Checksum       | 16   | 0x1a2b            |
+
+**Diagram:**  
+[12][13]
+
+***
+
+## Q8: SCTP Use Case
+
+*Not enough details in source to compare SCTP features or leverage multi-streaming.*
+
+***
+
+## Q9: Web Browser-Server Interaction
+
+User types a URL, browser resolves DNS, opens TCP session to server, sends HTTP request, receives HTTP response, renders content, and closes connection.
+
+**Summary Table:**
+
+| Step                 | Explanation                                 |
+|----------------------|---------------------------------------------|
+| User Input           | Browser receives URL                        |
+| DNS Resolution       | Finds IP address                            |
+| TCP Connection       | 3-way handshake to server                   |
+| HTTP Request         | Browser requests page                       |
+| Server Response      | Server sends HTML/data                      |
+| Rendering            | Browser displays content                    |
+| Connection End       | TCP session closes                          |
+
+**Diagram:**  
+[14][15]
+
+***
+
+## Q10: HTTP Communication Model
+
+HTTP uses a simple request-response over TCP where client sends a method+URL, receives a status+body, and session is stateless.
+
+**Message Table:**
+
+| Message Type | Example Start Line          |
+|--------------|----------------------------|
+| Request      | GET /index.html HTTP/1.1   |
+| Response     | HTTP/1.1 200 OK            |
+
+**Diagram:**  
+[14]
+
+***
+
+## Q11: DNS: Domain Names to IPs
+
+DNS translates human-readable names into machine IPs by querying a distributed, hierarchical set of servers.
+
+**Process Table:**
+
+| Step                 | Explanation                                    |
+|----------------------|------------------------------------------------|
+| Query                | User enters name, DNS resolver queried         |
+| Hierarchy            | TLD/root servers escalate as needed            |
+| Response             | Resolver returns IP address for host           |
+
+**Diagram:**  
+[14]
+
+***
+
+*All diagram sources referenced above for illustration. For full-size and updated images, follow source links.*
+
+Citations:
+[1] Distance Vector Routing v/s Link State Routing - Scaler Blog https://www.scaler.in/distance-vector-routing-v-s-link-state-routing/
+[2] Distance Vector Routing vs Link State Routing https://data-flair.training/blogs/distance-vector-routing-vs-link-state-routing/
+[3] TCP Congestion Control - Scaler https://www.scaler.com/topics/computer-network/tcp-congestion-control/
+[4] TCP Congestion Control - GeeksforGeeks https://www.geeksforgeeks.org/computer-networks/tcp-congestion-control/
+[5] Classful network https://en.wikipedia.org/wiki/Classful_network
+[6] IPv4 Header Format, Diagram, and its Significance - PyNet Labs https://www.pynetlabs.com/introduction-to-ipv4-header-format/
+[7] IPv4 Datagram Header - GeeksforGeeks https://www.geeksforgeeks.org/computer-networks/introduction-and-ipv4-datagram-header/
+[8] Transport Layer https://www.networkacademy.io/ccna/network-fundamentals/transport-layer
+[9] Transport Layer in OSI Model https://www.geeksforgeeks.org/computer-networks/transport-layer-in-osi-model/
+[10] TCP_3_way_handshaking https://wiki.wireshark.org/TCP_3_way_handshaking
+[11] TCP 3-Way Handshake Process https://www.geeksforgeeks.org/computer-networks/tcp-3-way-handshake-process/
+[12] Examples on UDP Header https://www.geeksforgeeks.org/computer-networks/examples-on-udp-header/
+[13] User Datagram Protocol - UDP https://www.geeksforgeeks.org/computer-networks/user-datagram-protocol-udp/
+[14] HTTP messages - MDN Web Docs - Mozilla https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages
+[15] HTTP Request Response Flow - Parth Goswami https://www.parthgoswami.com/http_request_response_flow/
+[16] Difference between Distance vector routing and Link State ... https://www.geeksforgeeks.org/computer-networks/difference-between-distance-vector-routing-and-link-state-routing/
+[17] Difference between Distance Vector Routing and Link ... https://www.tutorialspoint.com/difference-between-distance-vector-routing-and-link-state-routing
+[18] Link State vs Distance Vector vs Hybrid Routing Protocols https://www.cbtnuggets.com/blog/technology/networking/link-state-distance-vector-vs-hybrid-routing-protocols
+[19] CN 20 : Distance Vector VS Link State Routing | Examples https://www.youtube.com/watch?v=0Q3SEa9qyAI
+[20] Introduction of Classful IP Addressing https://www.geeksforgeeks.org/computer-networks/introduction-of-classful-ip-addressing/
