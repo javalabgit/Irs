@@ -7,7 +7,7 @@ Here is the complete markdown content:
 markdown
 # Operating Systems - Detailed Concepts and Solutions
 
----
+
 
 ## 1. Conditions for Deadlock & Resource Allocation Graph
 
@@ -32,7 +32,7 @@ A **deadlock** occurs in a system when a set of processes are blocked because ea
   P1 → R1 → P2 → R2 → P1 (cycle indicates deadlock possibility)
 ```
 
----
+
 
 ## 2. Techniques to Recover from Deadlocks
 
@@ -41,7 +41,6 @@ A **deadlock** occurs in a system when a set of processes are blocked because ea
 | *Process Termination* | Abort processes involved in deadlock | Simple, guarantees resolution | Wastes work, possibly inconsistent state |
 | *Resource Preemption* | Take resources away from processes to resolve deadlock | Preserves some progress | Complex, possible starvation, rollback needed |
 
----
 
 ## 3. Page Replacement Algorithms: FIFO & LRU
 
@@ -66,8 +65,6 @@ Replaces the earliest loaded page.
 
 Total page faults: *15*
 
----
-
 ### LRU (Least Recently Used)
 Replaces the page used the longest time ago.
 
@@ -83,7 +80,7 @@ Replaces the page used the longest time ago.
 
 Total page faults: *12*
 
----
+
 
 ## 4. Memory Allocation Techniques
 
@@ -93,7 +90,7 @@ Total page faults: *12*
 | Paging | Divisions into fixed pages | Eliminates external fragmentation | Internal fragmentation, overhead | Modern OS memory |
 | Segmentation | Divisions into variable segments | Supports sharing, modular | External fragmentation | Code, data, stack segments |
 
----
+
 
 ## 5. File Allocation Techniques
 
@@ -103,7 +100,7 @@ Total page faults: *12*
 | Linked | Each block points to the next | No external fragmentation | Slow random access | Log files, sequential reading |
 | Indexed | Uses an index block | Supports fast access | Complex to maintain | Large databases |
 
----
+
 
 ## 6. Directory Structures
 
@@ -113,7 +110,7 @@ Total page faults: *12*
 | Two-level | Separate directory per user | Reduces conflicts | Hierarchical structure |
 | Hierarchical | Tree structure with subdirectories | Scalable, organized | Tree diagram |
 
----
+
 
 ## 7. Banker's Algorithm
 
@@ -128,7 +125,7 @@ An avoidance algorithm that ensures the system remains in a safe state by only g
 ### Example:
 Flow diagram showing safety check sequence.
 
----
+
 
 ## 8. Disk Scheduling Algorithms
 
@@ -141,7 +138,7 @@ Flow diagram showing safety check sequence.
 
 Diagram illustrations show head motion.
 
----
+
 
 ## 9. Access Matrix
 
@@ -154,7 +151,6 @@ Diagram illustrations show head motion.
 
 - Used in security policies.
 
----
 
 ## 10. Free Space Management
 
@@ -164,7 +160,6 @@ Diagram illustrations show head motion.
 | Linked List | Links of free blocks | Easy to manage | Free block list |
 | Counting | Store start address & count | Efficient, flexible | Contiguous free blocks |
 
----
 
 This completes a detailed markdown document of your requested content. You can copy and save this as a .md file or render it in your markdown editor.
 
