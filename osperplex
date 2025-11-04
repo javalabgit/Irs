@@ -1,0 +1,173 @@
+# Operating Systems - Key Concepts and Solutions
+
+---
+
+## 1. Conditions for Deadlock & Resource Allocation Graph
+
+**Definition:**  
+A deadlock is a situation where a set of processes are blocked because each process holds a resource and waits for another resource held by some other process.
+
+**Necessary Conditions for Deadlock:**  
+- **Mutual Exclusion:** At least one resource must be non-shareable.
+- **Hold and Wait:** Processes holding resources wait for others.
+- **No Preemption:** Resources cannot be forcibly taken away.
+- **Circular Wait:** A circular chain of processes each waiting for a resource held by the next.
+
+**Resource Allocation Graph (RAG):**  
+- A directed graph where processes are circles and resources are rectangles.
+- **Request Edge:** From process to resource.
+- **Assignment Edge:** From resource to process.
+
+**Deadlock Avoidance Using RAG:**  
+- System grants resource requests only if the resulting graph has no cycle.
+- For single instance resources, cycle detection indicates a deadlock.
+- For multiple instances, a cycle is necessary but not sufficient for deadlock.
+
+---
+
+## 2. Techniques to Recover from Deadlocks
+
+| Technique                | Advantages                            | Disadvantages                  |
+|--------------------------|-------------------------------------|--------------------------------|
+| Abort all deadlocked processes | Simple, guaranteed to break deadlock | Wastes all work done         |
+| Abort one process at a time     | May preserve some work             | Repeated checks required      |
+| Resource Preemption            | Can resolve deadlock without aborting processes | Requires rollback, may cause starvation |
+
+- Preemption involves taking resource from one process and giving it to another.
+- Rollback may be necessary to restore to safe state before preemption.
+
+---
+
+## 3. Page Replacement Algorithms: FIFO, LRU  
+**Reference String:** `70120304230321201701`  
+**Number of Frames:** 3
+
+### FIFO Algorithm
+
+| Step | Reference | Frames State | Page Fault? |
+|-------|-----------|--------------|-------------|
+| 1     | 7         | [7]          | Yes         |
+| 2     | 0         | [7,0]        | Yes         |
+| 3     | 1         | [7,0,1]      | Yes         |
+| 4     | 2         | [0,1,2]      | Yes         |
+| 5     | 0         | [0,1,2]      | No          |
+| 6     | 3         | [1,2,3]      | Yes         |
+| 7     | 0         | [2,3,0]      | Yes         |
+| 8     | 4         | [3,0,4]      | Yes         |
+| 9     | 2         | [0,4,2]      | Yes         |
+| 10    | 3         | [4,2,3]      | Yes         |
+| 11    | 0         | [2,3,0]      | Yes         |
+| 12    | 3         | [2,3,0]      | No          |
+| 13    | 2         | [2,3,0]      | No          |
+| 14    | 1         | [3,0,1]      | Yes         |
+| 15    | 2         | [0,1,2]      | Yes         |
+| 16    | 0         | [0,1,2]      | No          |
+| 17    | 1         | [0,1,2]      | No          |
+| 18    | 7         | [1,2,7]      | Yes         |
+| 19    | 0         | [2,7,0]      | Yes         |
+| 20    | 1         | [7,0,1]      | Yes         |
+
+**Total Page Faults:** 15
+
+---
+
+### LRU Algorithm
+
+| Step | Reference | Frames State | Page Fault? |
+|-------|-----------|--------------|-------------|
+| 1     | 7         | [7]          | Yes         |
+| 2     | 0         | [7,0]        | Yes         |
+| 3     | 1         | [7,0,1]      | Yes         |
+| 4     | 2         | [0,1,2]      | Yes         |
+| 5     | 0         | [1,2,0]      | Yes         |
+| 6     | 3         | [2,0,3]      | Yes         |
+| 7     | 2         | [0,3,2]      | No          |
+| 8     | 3         | [0,2,3]      | No          |
+| 9     | 0         | [2,3,0]      | No          |
+| 10    | 4         | [3,0,4]      | Yes         |
+| 11    | 2         | [0,4,2]      | Yes         |
+| 12    | 3         | [4,2,3]      | Yes         |
+| 13    | 0         | [2,3,0]      | Yes         |
+| 14    | 3         | [2,0,3]      | No          |
+| 15    | 1         | [0,3,1]      | Yes         |
+| 16    | 2         | [3,1,2]      | Yes         |
+| 17    | 0         | [1,2,0]      | Yes         |
+| 18    | 1         | [2,0,1]      | No          |
+| 19    | 7         | [0,1,7]      | Yes         |
+| 20    | 0         | [1,7,0]      | No          |
+| 21    | 1         | [7,0,1]      | No          |
+
+**Total Page Faults:** 12
+
+---
+
+## 4. Memory Allocation Techniques
+
+| Technique       | Description                                          | Advantages                    | Disadvantages                | Examples                      |
+|-----------------|------------------------------------------------------|-------------------------------|------------------------------|-------------------------------|
+| Contiguous      | Assigns continuous block of memory                    | Simple, fast access            | Internal/external fragmentation | Fixed & variable partitions     |
+| Paging          | Divides memory and processes into fixed pages         | Eliminates external fragmentation | Internal fragmentation       | Modern OS memory management    |
+| Segmentation    | Divides memory into variable-sized logical segments   | Supports modular programming  | External fragmentation       | Code, stack, heap segments     |
+
+---
+
+## 5. File Allocation Techniques
+
+| Technique    | Description                                  | Advantages                  | Disadvantages               | Example Use                   |
+|--------------|----------------------------------------------|-----------------------------|-----------------------------|------------------------------|
+| Sequential   | Blocks in sequence                          | Simple, efficient for batch | Poor random access          | Text, audio files             |
+| Linked       | Each block points to next                    | No fragmentation            | Slow random access          | Log files                    |
+| Indexed      | Index block holds pointers                    | Fast random access          | Extra space for index       | Databases, large files       |
+
+---
+
+## 6. Directory Structures
+
+| Type           | Structure                                       | Features                         |
+|----------------|------------------------------------------------|----------------------------------|
+| Single-level   | All files in one directory                      | Simple, but name clashes possible|
+| Two-level      | Separate directory for each user                | Avoids name conflicts            |
+| Tree           | Hierarchical structure of directories           | Scalable, unique pathnames       |
+
+---
+
+## 7. Banker's Algorithm
+
+**Definition:**  
+A deadlock avoidance algorithm that tests resource allocation states for safety before granting requests.
+
+**Procedure:**  
+- Maintain max, allocated, and available resource matrices.
+- Request granted only if resulting state is safe.
+- Safe means all processes can finish with available resources in some order.
+
+---
+
+## 8. Disk Scheduling Algorithms
+
+| Algorithm | Description                               | Advantages                  | Disadvantages                |
+|-----------|-------------------------------------------|-----------------------------|------------------------------|
+| SCAN      | Head scans back and forth on disk         | Reduced seek time            | Starvation of some requests  |
+| C-SCAN    | Head moves in one direction only          | Uniform wait time            | May cause longer wait        |
+| LOOK      | Scan only as far as last request           | Saves unnecessary movement  | Same as SCAN in worst case   |
+| C-LOOK    | Circular LOOK                             | Saves movement, fair        | Same as C-SCAN               |
+
+---
+
+## 9. Access Matrix
+
+- A matrix specifying the rights of each subject over every object.
+- Controls permission and access in OS.
+
+---
+
+## 10. Free Space Management
+
+| Technique   | Description                              | Advantages           | Example                     |
+|-------------|----------------------------------------|----------------------|-----------------------------|
+| Bit Vector  | Bits represent free/occupied blocks     | Simple, direct       | Disk blocks free/used bits  |
+| Linked List | Free blocks linked in a list            | Easy to manage       | Linked free blocks on disk  |
+| Grouping    | A block holds address of free blocks    | Reduced overhead     | Grouped free block addresses|
+| Counting    | Store start and count of free blocks    | Efficient for contiguous frees | Contiguous memory blocks |
+
+---
