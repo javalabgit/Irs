@@ -30,7 +30,7 @@ A **deadlock** occurs in a system when a set of processes are blocked because ea
 ### Example Diagram:
 
   P1 → R1 → P2 → R2 → P1 (cycle indicates deadlock possibility)
-```
+
 
 
 
